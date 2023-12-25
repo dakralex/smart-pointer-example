@@ -112,9 +112,11 @@ operator<<(std::ostream& o,
     std::string separator;
 
     for (const auto& [key, patient]: patients) {
-        o << separator << *patient.lock();
+        if (!patient.expired()) {
+            o << separator << *patient.lock();
 
-        separator = ",";
+            separator = ",";
+        }
     }
 
     o << "}";

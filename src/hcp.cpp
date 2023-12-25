@@ -140,9 +140,11 @@ operator<<(std::ostream& o,
     std::string separator;
 
     for (const auto& [key, provider]: providers) {
-        o << separator << *provider.get();
+        if (provider) {
+            o << separator << *provider.get();
 
-        separator = ",";
+            separator = ",";
+        }
     }
 
     o << "}";

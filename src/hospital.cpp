@@ -11,12 +11,14 @@ Hospital::Hospital(std::string name)
 bool
 Hospital::admit_patient(std::shared_ptr<Patient> patient)
 {
-    if (auto p = patients.find(patient->get_name());
-            p != patients.end() && p->second.expired()) {
-        return std::get<bool>(patients.try_emplace(patient->get_name(), patient));
+    const auto& patient_name = patient->get_name();
+
+    if (auto p = patients.find(patient_name);
+            p == patients.end() || p->second.expired()) {
+        patients.erase(patient_name);
     }
 
-    return false;
+    return std::get<bool>(patients.try_emplace(patient_name, patient));
 }
 
 bool
@@ -42,7 +44,7 @@ Hospital::get_patient(std::string patient_name) const
 {
     auto p = patients.find(patient_name);
 
-    if (p == patients.end()) {
+    if (p == patients.end() || p->second.expired()) {
         throw std::runtime_error("Patient was not found.");
     }
 
