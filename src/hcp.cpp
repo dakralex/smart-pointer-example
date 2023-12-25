@@ -133,7 +133,9 @@ operator<<(std::ostream& o, const Health_Care_Provider& provider)
 
 std::ostream&
 operator<<(std::ostream& o,
-           const std::map<std::string, std::shared_ptr<Health_Care_Provider>>& providers)
+           const std::map<std::string,
+                   std::shared_ptr<Health_Care_Provider>,
+                   std::less<>>& providers)
 {
     o << "hcps {";
 

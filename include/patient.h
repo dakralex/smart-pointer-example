@@ -52,7 +52,7 @@ public:
 
     friend std::ostream&
     operator<<(std::ostream& o,
-               const std::map<std::string, std::weak_ptr<Patient>>& patients);
+               const std::map<std::string, std::weak_ptr<Patient>, std::less<>>& patients);
 };
 
 #endif //PR2_SMART_POINTER_PATIENT_H

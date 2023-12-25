@@ -105,7 +105,7 @@ operator<<(std::ostream& o, const Patient& patient)
 
 std::ostream&
 operator<<(std::ostream& o,
-           const std::map<std::string, std::weak_ptr<Patient>>& patients)
+           const std::map<std::string, std::weak_ptr<Patient>, std::less<>>& patients)
 {
     o << "patients {";
 

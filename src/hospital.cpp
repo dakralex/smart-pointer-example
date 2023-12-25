@@ -9,7 +9,7 @@ Hospital::Hospital(std::string name)
 }
 
 void
-Hospital::erase_patient_if_expired(std::string patient_name)
+Hospital::erase_patient_if_expired(const std::string& patient_name)
 {
     if (auto p = patients.find(patient_name);
             p == patients.end() || p->second.expired()) {
@@ -33,7 +33,7 @@ Hospital::sign_hcp(std::shared_ptr<Health_Care_Provider> provider)
 }
 
 bool
-Hospital::dismiss_patient(std::string patient_name)
+Hospital::dismiss_patient(const std::string& patient_name)
 {
     erase_patient_if_expired(patient_name);
 
@@ -41,13 +41,13 @@ Hospital::dismiss_patient(std::string patient_name)
 }
 
 bool
-Hospital::dismiss_hcp(std::string provider_name)
+Hospital::dismiss_hcp(const std::string& provider_name)
 {
     return providers.erase(provider_name);
 }
 
 std::shared_ptr<Patient>
-Hospital::get_patient(std::string patient_name) const
+Hospital::get_patient(const std::string& patient_name) const
 {
     auto p = patients.find(patient_name);
 
@@ -59,7 +59,7 @@ Hospital::get_patient(std::string patient_name) const
 }
 
 std::shared_ptr<Health_Care_Provider>
-Hospital::get_hcp(std::string provider_name) const
+Hospital::get_hcp(const std::string& provider_name) const
 {
     auto p = providers.find(provider_name);
 
