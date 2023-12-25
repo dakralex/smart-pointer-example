@@ -1,23 +1,18 @@
 #ifndef PR2_SMART_POINTER_HCP_H
 #define PR2_SMART_POINTER_HCP_H
 
-#include<set>
-#include<memory>
-#include<sstream>
-#include"patient.h"
+#include <set>
+#include <memory>
+#include <ostream>
+#include "illness.h"
+#include "patient.h"
 
-enum class Medical_Specialty {
-    Cardiology, Dermatology, Endocrinology, Gynecology,
-    Neurology, Oncology, Pathology, Pediatrics, Pulmonology, Urology
-};
-
-std::ostream& operator<<(std::ostream& o,
-                         Medical_Specialty specialty);
+class Patient;
 
 class Health_Care_Provider {
-    std::string name {nullptr};
-    std::set<Medical_Specialty> specialties {};
+    std::string name;
     unsigned wealth {0};
+    std::set<Medical_Specialty> specialties;
 public:
     Health_Care_Provider(std::string name,
                          const std::set<Medical_Specialty>& specialties,
@@ -25,24 +20,31 @@ public:
 
     virtual ~Health_Care_Provider();
 
-    void increase_wealth(unsigned amount);
+    void
+    increase_wealth(unsigned amount);
 
-    virtual unsigned perform_procedure(unsigned amount,
-                                       std::shared_ptr<Patient> patient,
-                                       Medical_Specialty specialty) = 0;
+    virtual unsigned
+    perform_procedure(unsigned amount,
+                      std::shared_ptr<Patient> patient,
+                      Medical_Specialty specialty) = 0;
 
-    bool pay_license(unsigned amount);
+    bool
+    pay_license(unsigned amount);
 
-    virtual void receive_license(Medical_Specialty specialty);
+    virtual void
+    receive_license(Medical_Specialty specialty);
 
-    bool eligible_for(Medical_Specialty specialty);
+    bool
+    eligible_for(Medical_Specialty specialty);
 
-    std::string get_name() const;
+    [[nodiscard]] std::string
+    get_name() const;
 
-    virtual std::string hcp_type() const = 0;
+    [[nodiscard]] virtual std::string
+    hcp_type() const = 0;
 
-    friend std::ostream& operator<<(std::ostream& o,
-                                    const Health_Care_Provider& provider);
+    friend std::ostream&
+    operator<<(std::ostream& o, const Health_Care_Provider& provider);
 };
 
 class Teaching_Health_Care_Provider : public Health_Care_Provider {
@@ -53,14 +55,17 @@ public:
                                   const std::set<Medical_Specialty>& specialties,
                                   unsigned wealth = 500);
 
-    unsigned perform_procedure(unsigned amount,
-                               std::shared_ptr<Patient> patient,
-                               Medical_Specialty specialty);
+    unsigned
+    perform_procedure(unsigned amount,
+                      std::shared_ptr<Patient> patient,
+                      Medical_Specialty specialty) override;
 
-    bool teach(Medical_Specialty specialty,
-               std::shared_ptr<Health_Care_Provider> target_provider);
+    bool
+    teach(Medical_Specialty specialty,
+          std::shared_ptr<Health_Care_Provider> target_provider);
 
-    std::string hcp_type() const;
+    [[nodiscard]] std::string
+    hcp_type() const override;
 };
 
 class Smart_Health_Care_Provider : public Health_Care_Provider {
@@ -71,13 +76,16 @@ public:
                                const std::set<Medical_Specialty>& specialties,
                                unsigned wealth = 500);
 
-    unsigned perform_procedure(unsigned amount,
-                               std::shared_ptr<Patient> patient,
-                               Medical_Specialty specialty);
+    unsigned
+    perform_procedure(unsigned amount,
+                      std::shared_ptr<Patient> patient,
+                      Medical_Specialty specialty) override;
 
-    void receive_license(Medical_Specialty specialty);
+    void
+    receive_license(Medical_Specialty specialty) override;
 
-    std::string hcp_type() const;
+    [[nodiscard]] std::string
+    hcp_type() const override;
 };
 
 #endif //PR2_SMART_POINTER_HCP_H
