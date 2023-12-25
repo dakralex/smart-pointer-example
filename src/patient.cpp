@@ -115,7 +115,7 @@ operator<<(std::ostream& o,
         if (!patient.expired()) {
             o << separator << *patient.lock();
 
-            separator = ",";
+            separator = ", ";
         }
     }
 

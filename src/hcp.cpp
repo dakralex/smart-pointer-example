@@ -143,7 +143,7 @@ operator<<(std::ostream& o,
         if (provider) {
             o << separator << *provider.get();
 
-            separator = ",";
+            separator = ", ";
         }
     }
 

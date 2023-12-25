@@ -8,15 +8,20 @@ Hospital::Hospital(std::string name)
     }
 }
 
-bool
-Hospital::admit_patient(std::shared_ptr<Patient> patient)
+void
+Hospital::erase_patient_if_expired(std::string patient_name)
 {
-    const auto& patient_name = patient->get_name();
-
     if (auto p = patients.find(patient_name);
             p == patients.end() || p->second.expired()) {
         patients.erase(patient_name);
     }
+}
+
+bool
+Hospital::admit_patient(std::shared_ptr<Patient> patient)
+{
+    const auto& patient_name = patient->get_name();
+    erase_patient_if_expired(patient_name);
 
     return std::get<bool>(patients.try_emplace(patient_name, patient));
 }
@@ -30,6 +35,8 @@ Hospital::sign_hcp(std::shared_ptr<Health_Care_Provider> provider)
 bool
 Hospital::dismiss_patient(std::string patient_name)
 {
+    erase_patient_if_expired(patient_name);
+
     return patients.erase(patient_name);
 }
 

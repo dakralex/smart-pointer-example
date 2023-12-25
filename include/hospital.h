@@ -11,6 +11,10 @@ class Hospital {
     std::string name;
     std::map<std::string, std::weak_ptr<Patient>> patients;
     std::map<std::string, std::shared_ptr<Health_Care_Provider>> providers;
+private:
+    void
+    erase_patient_if_expired(std::string patient_name);
+
 public:
     explicit Hospital(std::string name);
 

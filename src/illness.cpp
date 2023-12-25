@@ -17,7 +17,10 @@ Illness::operator==(const Illness& other) const
 bool
 Illness::operator<(const Illness& other) const
 {
-    return this->specialty < other.specialty;
+    if (this->specialty < other.specialty) { return true; }
+    if (this->specialty > other.specialty) { return false; }
+
+    return this->name < other.name;
 }
 
 Medical_Specialty
@@ -50,7 +53,7 @@ operator<<(std::ostream& o, const std::set<Medical_Specialty>& specialties)
     for (const auto& specialty: specialties) {
         o << separator << specialty;
 
-        separator = ",";
+        separator = ", ";
     }
 
     o << "}";
@@ -76,7 +79,7 @@ operator<<(std::ostream& o, const std::set<Illness>& illnesses)
     for (const auto& illness: illnesses) {
         o << separator << illness;
 
-        separator = ",";
+        separator = ", ";
     }
 
     o << "}";
