@@ -62,21 +62,6 @@ Hospital::get_hcp(std::string provider_name) const
 }
 
 std::ostream&
-operator<<(std::ostream& o,
-           const std::map<std::string, std::shared_ptr<Health_Care_Provider>>& providers)
-{
-    o << "hcps {";
-
-    for (const auto& [key, provider]: providers) {
-        o << provider.get() << ", ";
-    }
-
-    o << "\b}";
-
-    return o;
-}
-
-std::ostream&
 operator<<(std::ostream& o, const Hospital& hospital)
 {
     o << "[" << hospital.name << ", " << hospital.providers << ", "

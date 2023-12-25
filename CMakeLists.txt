@@ -14,4 +14,5 @@ add_executable(pr2_smart_pointer src/main.cpp
         src/illness.cpp
         src/patient.cpp
         src/hcp.cpp
-        src/hospital.cpp)
+        src/hospital.cpp
+        include/tasks.h)

@@ -47,15 +47,6 @@ Health_Care_Provider::get_name() const
     return name;
 }
 
-std::ostream&
-operator<<(std::ostream& o, const Health_Care_Provider& provider)
-{
-    o << "[" << provider.name << ", " << provider.specialties << ", "
-      << provider.wealth << " moneyz, " << provider.hcp_type() << "]";
-
-    return o;
-}
-
 Teaching_Health_Care_Provider::Teaching_Health_Care_Provider(unsigned int fee,
                                                              std::string name,
                                                              const std::set<Medical_Specialty>& specialties,
@@ -129,4 +120,32 @@ std::string
 Smart_Health_Care_Provider::hcp_type() const
 {
     return "Smart";
+}
+
+std::ostream&
+operator<<(std::ostream& o, const Health_Care_Provider& provider)
+{
+    o << "[" << provider.name << ", " << provider.specialties << ", "
+      << provider.wealth << " moneyz, " << provider.hcp_type() << "]";
+
+    return o;
+}
+
+std::ostream&
+operator<<(std::ostream& o,
+           const std::map<std::string, std::shared_ptr<Health_Care_Provider>>& providers)
+{
+    o << "hcps {";
+
+    std::string separator;
+
+    for (const auto& [key, provider]: providers) {
+        o << separator << *provider.get();
+
+        separator = ",";
+    }
+
+    o << "}";
+
+    return o;
 }

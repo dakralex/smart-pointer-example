@@ -9,6 +9,7 @@
 #include "illness.h"
 
 class Illness;
+
 enum class Medical_Specialty;
 
 class Patient {

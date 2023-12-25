@@ -109,11 +109,15 @@ operator<<(std::ostream& o,
 {
     o << "patients {";
 
+    std::string separator;
+
     for (const auto& [key, patient]: patients) {
-        o << patient.lock().get() << ", ";
+        o << separator << *patient.lock();
+
+        separator = ",";
     }
 
-    o << "\b}";
+    o << "}";
 
     return o;
 }

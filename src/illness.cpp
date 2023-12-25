@@ -45,11 +45,15 @@ operator<<(std::ostream& o, const std::set<Medical_Specialty>& specialties)
 {
     o << "{";
 
+    std::string separator;
+
     for (const auto& specialty: specialties) {
-        o << specialty << ", ";
+        o << separator << specialty;
+
+        separator = ",";
     }
 
-    o << "\b}";
+    o << "}";
 
     return o;
 }
@@ -67,11 +71,15 @@ operator<<(std::ostream& o, const std::set<Illness>& illnesses)
 {
     o << "{";
 
+    std::string separator;
+
     for (const auto& illness: illnesses) {
-        o << illness << ", ";
+        o << separator << illness;
+
+        separator = ",";
     }
 
-    o << "\b}";
+    o << "}";
 
     return o;
 }

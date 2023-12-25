@@ -45,6 +45,10 @@ public:
 
     friend std::ostream&
     operator<<(std::ostream& o, const Health_Care_Provider& provider);
+
+    friend std::ostream&
+    operator<<(std::ostream& o,
+               const std::map<std::string, std::shared_ptr<Health_Care_Provider>>& providers);
 };
 
 class Teaching_Health_Care_Provider : public Health_Care_Provider {
