@@ -16,16 +16,19 @@ void
 test_hospital();
 
 void
-_print_map(const std::map<Medical_Specialty, size_t>& specialities)
-{
-    if (specialities.empty()) {
-        std::cout << "Empty map\n";
-    }
+test_task_1();
 
-    for (const auto& [key, speciality]: specialities) {
-        std::cout << key << ": " << speciality << std::endl;
-    }
-}
+void
+test_task_2();
+
+void
+test_task_3();
+
+void
+test_task_4();
+
+void
+print_map(const std::map<Medical_Specialty, size_t>& specialities);
 
 int
 main()
@@ -46,156 +49,207 @@ main()
     test_hospital();
 
     // Task 1
-    /*
-    {
-      const std::vector SPECIALTIES{Medical_Specialty::Cardiology, Medical_Specialty::Dermatology, Medical_Specialty::Endocrinology, Medical_Specialty::Gynecology, Medical_Specialty::Neurology, Medical_Specialty::Oncology, Medical_Specialty::Pathology, Medical_Specialty::Pediatrics, Medical_Specialty::Pulmonology, Medical_Specialty::Urology};
-      std::shared_ptr<Health_Care_Provider> s1{std::make_shared<Smart_Health_Care_Provider>(100,"Smart 1",std::set<Medical_Specialty>{SPECIALTIES[0],SPECIALTIES[6]},220)};
-      std::shared_ptr<Health_Care_Provider> s2{std::make_shared<Smart_Health_Care_Provider>(100,"Smartsssss 2",std::set<Medical_Specialty>{SPECIALTIES[0],SPECIALTIES[3]},3210)};
-      std::shared_ptr<Health_Care_Provider> s3{std::make_shared<Smart_Health_Care_Provider>(100,"Smartww 3",std::set<Medical_Specialty>{SPECIALTIES[2],SPECIALTIES[6],SPECIALTIES[3]},22)};
-      std::shared_ptr<Health_Care_Provider> s4{std::make_shared<Smart_Health_Care_Provider>(100,"Smarte 4",std::set<Medical_Specialty>{SPECIALTIES[3],SPECIALTIES[6],SPECIALTIES[5]},44)};
-
-      std::cout << "[";
-      for(const auto& x : task1({}))
-        std::cout << *x << ",";
-      std::cout << "]" << std::endl << "[";
-      for(const auto& x : task1({s1,s2,s3,s4}))
-        std::cout << *x << ",";
-      std::cout << "]" << std::endl << "[";
-      for(const auto& x : task1({s1,s2}))
-        std::cout << *x << ",";
-      std::cout << "]" << std::endl << "[";
-      for(const auto& x : task1({s3,s4}))
-        std::cout << *x << ",";
-      std::cout << "]" << std::endl << "[";
-      for(const auto& x : task1({s1,s4}))
-        std::cout << *x << ",";
-      std::cout << "]" << std::endl;
-    }
-    */
+    test_task_1();
 
     // Task 2
-    /*
-    {
-      const std::vector SPECIALTIES{Medical_Specialty::Cardiology, Medical_Specialty::Dermatology, Medical_Specialty::Endocrinology, Medical_Specialty::Gynecology, Medical_Specialty::Neurology, Medical_Specialty::Oncology, Medical_Specialty::Pathology, Medical_Specialty::Pediatrics, Medical_Specialty::Pulmonology, Medical_Specialty::Urology};
-      Special_Hospital sp{"1 and 2"};
-      Illness i1{SPECIALTIES[0],"A"};
-      Illness i2{SPECIALTIES[1],"AB"};
-      Illness i3{SPECIALTIES[2],"A"};
-      Illness i4{SPECIALTIES[2],"A"};
-      std::shared_ptr<Patient> p1{std::make_shared<Patient>("Hera",69,std::set<Illness>{i1,i2,i3,i4},0)};
-      std::shared_ptr<Patient> p2{std::make_shared<Patient>("Hera2",69,std::set<Illness>{i1,i2,i3},0)};
-      std::shared_ptr<Patient> p3{std::make_shared<Patient>("Hera2",69,std::set<Illness>{i4,i3},0)};
-      std::cout << sp << std::endl;
-      _print_map(sp.get_map());
-      std::cout << sp.admit_patient(p1) << std::endl;
-      std::cout << sp.admit_patient(p1) << std::endl;
-      std::cout << sp.dismiss_patient(p1->get_name()) << std::endl;
-      std::cout << sp.admit_patient(p1) << std::endl;
-      std::cout << sp.dismiss_patient(p1->get_name()) << std::endl;
-      std::cout << sp.admit_patient(p2) << std::endl;
-      std::cout << sp.admit_patient(p2) << std::endl;
-      std::cout << sp.dismiss_patient(p2->get_name()) << std::endl;
-      _print_map(sp.get_map());
-      std::cout << sp.admit_patient(p2) << std::endl;
-      std::cout << sp.dismiss_patient(p2->get_name()) << std::endl;
-      std::cout << sp.admit_patient(p3) << std::endl;
-      std::cout << sp.dismiss_patient(p3->get_name()) << std::endl;
-      std::cout << sp.admit_patient(p3) << std::endl;
-      std::cout << sp.dismiss_patient(p3->get_name()) << std::endl;
-      _print_map(sp.get_map());
-      {
-        std::shared_ptr<Patient> p4{std::make_shared<Patient>("Hera4",69,std::set<Illness>{i1,i2,i3},0)};
-        std::cout << sp.admit_patient(p4) << std::endl;
-        std::cout << sp.admit_patient(p4) << std::endl;
-        _print_map(sp.get_map());
-      }
-      {
-        std::shared_ptr<Patient> p4{std::make_shared<Patient>("Hera4",69,std::set<Illness>{i1},0)};
-        std::cout << sp.admit_patient(p4) << std::endl;
-        std::cout << sp.admit_patient(p4) << std::endl;
-        _print_map(sp.get_map());
-      }
-        std::cout << sp << std::endl;
-        _print_map(sp.get_map());
-    }
-    */
+    test_task_2();
 
 
     // Task 3
-    {
-        /*
-        const std::vector SPECIALTIES{Medical_Specialty::Cardiology, Medical_Specialty::Dermatology, Medical_Specialty::Endocrinology, Medical_Specialty::Gynecology, Medical_Specialty::Neurology, Medical_Specialty::Oncology, Medical_Specialty::Pathology, Medical_Specialty::Pediatrics, Medical_Specialty::Pulmonology, Medical_Specialty::Urology};
-        Task3_HCP x{100,"X",std::set<Medical_Specialty>{},0};
-        Task3_HCP y{100,"Y",std::set<Medical_Specialty>{SPECIALTIES[0],SPECIALTIES[1]},10};
-        std::cout << x << std::endl;
-        std::cout << y << std::endl;
-        y.receive_license(SPECIALTIES[0]);
-        x.receive_license(SPECIALTIES[0]);
-        std::cout << x << std::endl;
-        std::cout << y << std::endl;
-        y.receive_license(SPECIALTIES[0]);
-        x.receive_license(SPECIALTIES[0]);
-        std::cout << x << std::endl;
-        std::cout << y << std::endl;
-        y.receive_license(SPECIALTIES[3]);
-        x.receive_license(SPECIALTIES[3]);
-        y.receive_license(SPECIALTIES[0]);
-        x.receive_license(SPECIALTIES[0]);
-        std::cout << x << std::endl;
-        std::cout << y << std::endl;
-        x.receive_license(SPECIALTIES[2]);
-        y.receive_license(SPECIALTIES[2]);
-        y.receive_license(SPECIALTIES[3]);
-        x.receive_license(SPECIALTIES[3]);
-        std::cout << x << std::endl;
-        std::cout << y << std::endl;
-        */
-    }
+    test_task_3();
+
     // Task 4
-    /*
-    {
-      const std::vector SPECIALTIES{Medical_Specialty::Cardiology, Medical_Specialty::Dermatology, Medical_Specialty::Endocrinology, Medical_Specialty::Gynecology, Medical_Specialty::Neurology, Medical_Specialty::Oncology, Medical_Specialty::Pathology, Medical_Specialty::Pediatrics, Medical_Specialty::Pulmonology, Medical_Specialty::Urology};
-      Illness i1{SPECIALTIES[0],"AAA"};
-      Illness i2{SPECIALTIES[0],"AB"};
-      Illness i3{SPECIALTIES[2],"AAASS"};
-      Illness i4{SPECIALTIES[3],"ADASD"};
-      Illness i5{SPECIALTIES[3],"AB"};
-      std::shared_ptr<Patient> p1{std::make_shared<Patient>("Hera",9,std::set<Illness>{i1,i2},10)};
-      std::shared_ptr<Patient> p2{std::make_shared<Patient>("Hera2",69,std::set<Illness>{i1,i4,i3},220)};
-      std::shared_ptr<Patient> p3{std::make_shared<Patient>("Hera2",69,std::set<Illness>{i4,i1},30)};
-      std::shared_ptr<Patient> p4{std::make_shared<Patient>("Hera4",9,std::set<Illness>{i4,i5,i1,i2,i3},1110)};
-      std::shared_ptr<Patient> p5{std::make_shared<Patient>("Hera5",9,std::set<Illness>{i4,i1,i2,i3},1110)};
-      std::shared_ptr<Patient> p6{std::make_shared<Patient>("Hera6",9,std::set<Illness>{i4,i5,i2,i3},1110)};
-      Super_Task st1{{p1,p2,p4}};
-      Super_Task st2{{p1,p2,p3,p4,p5,p6}};
-      p2.reset();
-      std::cout<< "[";
-      for(const auto& x : st1.screening({SPECIALTIES[0]}))
+    test_task_4();
+}
+
+void
+test_task_1()
+{
+    std::shared_ptr<Health_Care_Provider> s1 {
+            std::make_shared<Smart_Health_Care_Provider>(100, "Smart 1",
+                                                         std::set<Medical_Specialty> {
+                                                                 SPECIALTIES[0],
+                                                                 SPECIALTIES[6]}, 220)};
+    std::shared_ptr<Health_Care_Provider> s2 {
+            std::make_shared<Smart_Health_Care_Provider>(100, "Smartsssss 2",
+                                                         std::set<Medical_Specialty> {
+                                                                 SPECIALTIES[0],
+                                                                 SPECIALTIES[3]}, 3210)};
+    std::shared_ptr<Health_Care_Provider> s3 {
+            std::make_shared<Smart_Health_Care_Provider>(100, "Smartww 3",
+                                                         std::set<Medical_Specialty> {
+                                                                 SPECIALTIES[2],
+                                                                 SPECIALTIES[6],
+                                                                 SPECIALTIES[3]}, 22)};
+    std::shared_ptr<Health_Care_Provider> s4 {
+            std::make_shared<Smart_Health_Care_Provider>(100, "Smarte 4",
+                                                         std::set<Medical_Specialty> {
+                                                                 SPECIALTIES[3],
+                                                                 SPECIALTIES[6],
+                                                                 SPECIALTIES[5]}, 44)};
+
+    std::cout << "[";
+    for (const auto& x: task1({})) {
         std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st2.screening({SPECIALTIES[2]}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st1.screening({SPECIALTIES[0],SPECIALTIES[2]}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st2.screening({SPECIALTIES[2],SPECIALTIES[6]}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st1.screening({SPECIALTIES[3],SPECIALTIES[0]}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st2.screening({SPECIALTIES[3],SPECIALTIES[0]}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st1.screening({}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl << "[";
-      for(const auto& x : st2.screening({}))
-        std::cout << *x << ",";
-      std::cout<< "]"<<std::endl;
     }
-    */
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: task1({s1, s2, s3, s4})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: task1({s1, s2})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: task1({s3, s4})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: task1({s1, s4})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl;
+}
+
+void
+test_task_2()
+{
+    Special_Hospital sp {"1 and 2"};
+    Illness i1 {SPECIALTIES[0], "A"};
+    Illness i2 {SPECIALTIES[1], "AB"};
+    Illness i3 {SPECIALTIES[2], "A"};
+    Illness i4 {SPECIALTIES[2], "A"};
+    std::shared_ptr<Patient> p1 {
+            std::make_shared<Patient>("Hera", 69, std::set<Illness> {i1, i2, i3, i4}, 0)};
+    std::shared_ptr<Patient> p2 {
+            std::make_shared<Patient>("Hera2", 69, std::set<Illness> {i1, i2, i3}, 0)};
+    std::shared_ptr<Patient> p3 {
+            std::make_shared<Patient>("Hera2", 69, std::set<Illness> {i4, i3}, 0)};
+    std::cout << sp << std::endl;
+    print_map(sp.get_map());
+    std::cout << sp.admit_patient(p1) << std::endl;
+    std::cout << sp.admit_patient(p1) << std::endl;
+    std::cout << sp.dismiss_patient(p1->get_name()) << std::endl;
+    std::cout << sp.admit_patient(p1) << std::endl;
+    std::cout << sp.dismiss_patient(p1->get_name()) << std::endl;
+    std::cout << sp.admit_patient(p2) << std::endl;
+    std::cout << sp.admit_patient(p2) << std::endl;
+    std::cout << sp.dismiss_patient(p2->get_name()) << std::endl;
+    print_map(sp.get_map());
+    std::cout << sp.admit_patient(p2) << std::endl;
+    std::cout << sp.dismiss_patient(p2->get_name()) << std::endl;
+    std::cout << sp.admit_patient(p3) << std::endl;
+    std::cout << sp.dismiss_patient(p3->get_name()) << std::endl;
+    std::cout << sp.admit_patient(p3) << std::endl;
+    std::cout << sp.dismiss_patient(p3->get_name()) << std::endl;
+    print_map(sp.get_map());
+    {
+        std::shared_ptr<Patient> p4 {
+                std::make_shared<Patient>("Hera4", 69, std::set<Illness> {i1, i2, i3}, 0)};
+        std::cout << sp.admit_patient(p4) << std::endl;
+        std::cout << sp.admit_patient(p4) << std::endl;
+        print_map(sp.get_map());
+    }
+    {
+        std::shared_ptr<Patient> p4 {
+                std::make_shared<Patient>("Hera4", 69, std::set<Illness> {i1}, 0)};
+        std::cout << sp.admit_patient(p4) << std::endl;
+        std::cout << sp.admit_patient(p4) << std::endl;
+        print_map(sp.get_map());
+    }
+    std::cout << sp << std::endl;
+    print_map(sp.get_map());
+}
+
+void
+test_task_3()
+{
+    Task3_HCP x {100, "X", std::set<Medical_Specialty> {}, 0};
+    Task3_HCP y {100, "Y", std::set<Medical_Specialty> {SPECIALTIES[0], SPECIALTIES[1]},
+                 10};
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+    y.receive_license(SPECIALTIES[0]);
+    x.receive_license(SPECIALTIES[0]);
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+    y.receive_license(SPECIALTIES[0]);
+    x.receive_license(SPECIALTIES[0]);
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+    y.receive_license(SPECIALTIES[3]);
+    x.receive_license(SPECIALTIES[3]);
+    y.receive_license(SPECIALTIES[0]);
+    x.receive_license(SPECIALTIES[0]);
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+    x.receive_license(SPECIALTIES[2]);
+    y.receive_license(SPECIALTIES[2]);
+    y.receive_license(SPECIALTIES[3]);
+    x.receive_license(SPECIALTIES[3]);
+    std::cout << x << std::endl;
+    std::cout << y << std::endl;
+}
+
+void
+test_task_4()
+{
+    Illness i1 {SPECIALTIES[0], "AAA"};
+    Illness i2 {SPECIALTIES[0], "AB"};
+    Illness i3 {SPECIALTIES[2], "AAASS"};
+    Illness i4 {SPECIALTIES[3], "ADASD"};
+    Illness i5 {SPECIALTIES[3], "AB"};
+    std::shared_ptr<Patient> p1 {
+            std::make_shared<Patient>("Hera", 9, std::set<Illness> {i1, i2}, 10)};
+    std::shared_ptr<Patient> p2 {
+            std::make_shared<Patient>("Hera2", 69, std::set<Illness> {i1, i4, i3}, 220)};
+    std::shared_ptr<Patient> p3 {
+            std::make_shared<Patient>("Hera2", 69, std::set<Illness> {i4, i1}, 30)};
+    std::shared_ptr<Patient> p4 {
+            std::make_shared<Patient>("Hera4", 9, std::set<Illness> {i4, i5, i1, i2, i3},
+                                      1110)};
+    std::shared_ptr<Patient> p5 {
+            std::make_shared<Patient>("Hera5", 9, std::set<Illness> {i4, i1, i2, i3},
+                                      1110)};
+    std::shared_ptr<Patient> p6 {
+            std::make_shared<Patient>("Hera6", 9, std::set<Illness> {i4, i5, i2, i3},
+                                      1110)};
+    Super_Task st1 {{p1, p2, p4}};
+    Super_Task st2 {{p1, p2, p3, p4, p5, p6}};
+    p2.reset();
+    std::cout << "[";
+    for (const auto& x: st1.screening({SPECIALTIES[0]})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st2.screening({SPECIALTIES[2]})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st1.screening({SPECIALTIES[0], SPECIALTIES[2]})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st2.screening({SPECIALTIES[2], SPECIALTIES[6]})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st1.screening({SPECIALTIES[3], SPECIALTIES[0]})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st2.screening({SPECIALTIES[3], SPECIALTIES[0]})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st1.screening({})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl << "[";
+    for (const auto& x: st2.screening({})) {
+        std::cout << *x << ",";
+    }
+    std::cout << "]" << std::endl;
 }
 
 void
@@ -445,4 +499,16 @@ test_hospital()
     std::cout << "Dismiss: " << h.dismiss_patient("Hera") << std::endl;
     std::cout << "Dismiss: " << h.dismiss_patient("Hera2") << std::endl;
     std::cout << h << std::endl;
+}
+
+void
+print_map(const std::map<Medical_Specialty, size_t>& specialities)
+{
+    if (specialities.empty()) {
+        std::cout << "Empty map\n";
+    }
+
+    for (const auto& [key, speciality]: specialities) {
+        std::cout << key << ": " << speciality << std::endl;
+    }
 }

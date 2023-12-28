@@ -18,7 +18,7 @@ private:
 public:
     explicit Hospital(std::string name);
 
-    bool
+    virtual bool
     admit_patient(std::shared_ptr<Patient> patient);
 
     bool
@@ -44,6 +44,18 @@ public:
                const std::map<std::string,
                        std::shared_ptr<Health_Care_Provider>,
                        std::less<>>& providers);
+};
+
+class Special_Hospital : public Hospital {
+    std::map<Medical_Specialty, std::size_t> counter_map;
+public:
+    explicit Special_Hospital(std::string name);
+
+    [[nodiscard]] const std::map<Medical_Specialty, std::size_t>&
+    get_map() const;
+
+    bool
+    admit_patient(std::shared_ptr<Patient> patient) override;
 };
 
 #endif //PR2_SMART_POINTER_HOSPITAL_H

@@ -40,6 +40,12 @@ public:
     [[nodiscard]] std::string
     get_name() const;
 
+    [[nodiscard]] unsigned
+    get_wealth() const;
+
+    [[nodiscard]] const std::set<Medical_Specialty>&
+    get_topics() const;
+
     [[nodiscard]] virtual std::string
     hcp_type() const = 0;
 
@@ -92,6 +98,18 @@ public:
 
     [[nodiscard]] std::string
     hcp_type() const override;
+};
+
+class Task3_HCP: public Smart_Health_Care_Provider {
+    static unsigned counter_received;
+public:
+    Task3_HCP(unsigned fee,
+              std::string name,
+              const std::set<Medical_Specialty>& specialties,
+              unsigned wealth = 500);
+
+    void
+    receive_license(Medical_Specialty specialty) override;
 };
 
 #endif //PR2_SMART_POINTER_HCP_H

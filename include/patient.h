@@ -47,6 +47,9 @@ public:
     [[nodiscard]] std::string
     get_name() const;
 
+    [[nodiscard]] const std::set<Illness>&
+    get_illnesses() const;
+
     friend std::ostream&
     operator<<(std::ostream& o, const Patient& patient);
 

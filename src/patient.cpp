@@ -75,7 +75,7 @@ Patient::cure(Medical_Specialty specialty)
 bool
 Patient::requires_treatment_in(Medical_Specialty specialty) const
 {
-    return std::count_if(illnesses.begin(), illnesses.end(), [specialty](
+    return std::any_of(illnesses.begin(), illnesses.end(), [specialty](
             const Illness& illness) {
         return illness.get_specialty() == specialty;
     });
@@ -91,6 +91,12 @@ std::string
 Patient::get_name() const
 {
     return name;
+}
+
+const std::set<Illness>&
+Patient::get_illnesses() const
+{
+    return illnesses;
 }
 
 std::ostream&

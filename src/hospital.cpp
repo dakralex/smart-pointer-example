@@ -1,3 +1,4 @@
+#include <utility>
 #include "hospital.h"
 
 Hospital::Hospital(std::string name)
@@ -77,4 +78,32 @@ operator<<(std::ostream& o, const Hospital& hospital)
       << hospital.patients << "]";
 
     return o;
+}
+
+Special_Hospital::Special_Hospital(std::string name)
+        :Hospital(std::move(name)) { }
+
+const std::map<Medical_Specialty, std::size_t>&
+Special_Hospital::get_map() const
+{
+    return counter_map;
+}
+
+bool
+Special_Hospital::admit_patient(std::shared_ptr<Patient> patient)
+{
+    if (!Hospital::admit_patient(patient)) {
+        return false;
+    }
+
+    std::set<Medical_Specialty> specialties;
+    for (const auto& illness: patient->get_illnesses()) {
+        specialties.insert(illness.get_specialty());
+    }
+
+    for (const auto& specialty: specialties) {
+        counter_map[specialty] += 1;
+    }
+
+    return true;
 }

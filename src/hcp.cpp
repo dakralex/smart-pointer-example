@@ -1,3 +1,4 @@
+#include <utility>
 #include "hcp.h"
 
 Health_Care_Provider::Health_Care_Provider(std::string name,
@@ -45,6 +46,18 @@ std::string
 Health_Care_Provider::get_name() const
 {
     return name;
+}
+
+unsigned
+Health_Care_Provider::get_wealth() const
+{
+    return wealth;
+}
+
+const std::set<Medical_Specialty>&
+Health_Care_Provider::get_topics() const
+{
+    return specialties;
 }
 
 Teaching_Health_Care_Provider::Teaching_Health_Care_Provider(unsigned int fee,
@@ -152,4 +165,22 @@ operator<<(std::ostream& o,
     o << "}";
 
     return o;
+}
+
+Task3_HCP::Task3_HCP(unsigned int fee,
+                     std::string name,
+                     const std::set<Medical_Specialty>& specialties,
+                     unsigned int wealth)
+        :Smart_Health_Care_Provider(fee, std::move(name), specialties, wealth) { }
+
+unsigned Task3_HCP::counter_received {0};
+
+void
+Task3_HCP::receive_license(Medical_Specialty specialty)
+{
+    counter_received += 1;
+
+    if (counter_received % 2 == 0) {
+        Smart_Health_Care_Provider::receive_license(specialty);
+    }
 }
